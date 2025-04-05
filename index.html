@@ -3,8 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>Funny CAPTCHA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+
+        .captcha-container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .captcha-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .hand {
+            font-size: 100px;
+            margin-bottom: 20px;
+            transition: transform 1s ease-in-out;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+
+        .frustration-btn {
+            margin-top: 20px;
+            background-color: #e74c3c;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .brainfuck-container {
+            text-align: center;
+            display: none;
+        }
+
+        .brainfuck-container textarea {
+            padding: 10px;
+            width: 400px;
+            height: 200px;
+            font-size: 16px;
+        }
+
+        .brainfuck-container button {
+            margin-top: 10px;
+        }
+
+        .direction-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .direction-buttons button {
+            width: 80px;
+        }
+
+        .directions {
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+        }
+
+        .legal-paper {
+            display: none;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .legal-paper h2 {
+            text-align: center;
+        }
+
+        .signature-input {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            text-decoration: underline;
+        }
+
+        #robotImage {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #robotImage img {
+            max-width: 200px;
+        }
+    </style>
 </head>
 <body>
     <div id="captchaPage" class="captcha-container">
@@ -49,6 +181,76 @@
         <img src="https://www.example.com/robot.png" alt="Robot" />
         <p>Now you're one of us, let's go conquer the world!</p>
     </div>
-    <script src="chaos.js"></script>
+
+    <script>
+        // Moving Hand Logic
+        const hand = document.getElementById('hand');
+        const directionButtons = document.querySelectorAll('.direction-buttons button');
+        let handDirection = 0; // Start with no rotation
+        let moveInterval;
+
+        // Directions for rotating the hand
+        const directions = ['Top', 'Right', 'Bottom', 'Left'];
+
+        function moveHand() {
+            // Rotate hand randomly in a direction
+            handDirection = (handDirection + 1) % 4;
+            const rotation = handDirection * 90;
+            hand.style.transform = `rotate(${rotation}deg)`; // Rotate 90, 180, 270, 360 degrees
+        }
+
+        moveInterval = setInterval(moveHand, 1000); // Move hand every second
+
+        // Direction button click handling
+        directionButtons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+                const selectedDirection = directions[index];
+                const actualDirection = directions[handDirection];
+                if (selectedDirection === actualDirection) {
+                    alert('Correct! But that was too easy!');
+                } else {
+                    alert('Nope, try again!');
+                }
+            });
+        });
+
+        // Frustration Button Logic
+        document.getElementById('frustrationBtn').addEventListener('click', function() {
+            // Hide the CAPTCHA page
+            document.getElementById('captchaPage').style.display = 'none';
+            // Show the Brainfuck challenge page
+            document.getElementById('brainfuckPage').style.display = 'block';
+        });
+
+        // Brainfuck Code Input Logic
+        function checkBrainfuckCode() {
+            const userCode = document.getElementById('brainfuckInput').value.trim();
+            const resultMessage = document.getElementById('resultMessage');
+            
+            // Always show incorrect message (for fun)
+            resultMessage.textContent = "Oops! This isn't the correct Brainfuck code.";
+            resultMessage.style.color = "red";
+            resultMessage.classList.remove('hidden');
+            document.getElementById('stillFrustratedBtn').classList.remove('hidden');
+        }
+
+        // Show the Legal Paper Text
+        function showLegalPaper() {
+            document.getElementById('brainfuckPage').style.display = 'none';
+            document.getElementById('legalPaper').style.display = 'block';
+        }
+
+        // Complete the Process
+        function completeProcess() {
+            const signature = document.getElementById('signatureInput').value.trim();
+            if (signature) {
+                // Hide the legal paper and show the robot image
+                document.getElementById('legalPaper').style.display = 'none';
+                document.getElementById('robotImage').style.display = 'block';
+            } else {
+                alert("Please sign your name first!");
+            }
+        }
+    </script>
 </body>
 </html>
