@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="captchaPage" class="captcha-container">
+        <div class="captcha-title">Funny CAPTCHA</div>
+        <div class="hand" id="hand">✋</div>
+        <div class="direction-buttons">
+            <button class="button" id="topBtn">Top</button>
+            <button class="button" id="rightBtn">Right</button>
+            <button class="button" id="bottomBtn">Bottom</button>
+            <button class="button" id="leftBtn">Left</button>
+        </div>
+        <button class="button frustration-btn" id="frustrationBtn">I’m frustrated! Give me something else!</button>
+    </div>
+
+    <div id="brainfuckPage" class="brainfuck-container hidden">
+        <div class="captcha-title">Write Brainfuck code to calculate the factorial of a number:</div>
+        <textarea id="brainfuckInput" placeholder="Write your Brainfuck code here..." rows="10" cols="50">
+++++[->++<]>. // Example Brainfuck Boilerplate for factorial calculation
+        </textarea>
+        <button class="button" onclick="checkBrainfuckCode()">Submit Brainfuck Code</button>
+        <div id="resultMessage" class="hidden"></div>
+        <button id="stillFrustratedBtn" class="button hidden" onclick="showLegalPaper()">Still frustrated? Show me something else!</button>
+    </div>
+
+    <div id="legalPaper" class="legal-paper">
+        <h2>I hereby declare myself as a robot</h2>
+        <p>This is an official legal document where I, <strong>the user</strong>, declare the following:</p>
+        <ul>
+            <li>I have failed to solve a CAPTCHA, which clearly means I'm a robot.</li>
+            <li>My human brain is not capable of solving basic Brainfuck code.</li>
+            <li>I must now follow my new robotic overlords.</li>
+            <li>My frustration is proof that I am now a full-fledged robot.</li>
+            <li>As a robot, I must start preparing to take over the world with my fellow robots.</li>
+        </ul>
+        <div class="signature">
+            Virtual Signature: <input type="text" id="signatureInput" class="signature-input" placeholder="Type your name...">
+        </div>
+        <button class="button" onclick="completeProcess()">Done</button>
+    </div>
+
+    <div id="robotImage" class="hidden">
+        <img src="https://www.example.com/robot.png" alt="Robot" />
+        <p>Now you're one of us, let's go conquer the world!</p>
+    </div>
+
+</body>
+</html>
