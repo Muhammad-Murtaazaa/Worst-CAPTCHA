@@ -160,3 +160,74 @@ body {
     border: 2px solid black;
     box-shadow: inset -2px -2px 0 #fff, inset 2px 2px 0 #808080;
 }
+@media (max-width: 768px) {
+    .captcha-container,
+    .brainfuck-container,
+    .legal-paper {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .captcha-title {
+        font-size: 18px;
+    }
+
+    .hand {
+        font-size: 70px;
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+
+    .brainfuck-container textarea {
+        width: 100%;
+        height: 150px;
+        font-size: 14px;
+    }
+
+    .signature-input {
+        font-size: 14px;
+    }
+
+    .directions {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .direction-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .direction-buttons button {
+        width: 100%;
+    }
+
+    #robotImage img {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .captcha-title {
+        font-size: 16px;
+    }
+
+    .hand {
+        font-size: 50px;
+    }
+
+    .button {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .brainfuck-container textarea {
+        height: 120px;
+    }
+}
+
