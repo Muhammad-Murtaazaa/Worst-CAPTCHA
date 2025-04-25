@@ -21,9 +21,9 @@
     </div>
 
     <div id="brainfuckPage" class="brainfuck-container hidden">
-        <div class="captcha-title">Write Brainfuck code to calculate the factorial of a number:</div>
+        <div class="captcha-title">Write Brainf*ck code to calculate the factorial of a number:</div>
         <textarea id="brainfuckInput" placeholder="Write your Brainfuck code here..." rows="10" cols="50">
-++++[->++<]>. // Example Brainfuck Boilerplate for factorial calculation
+++++[->++<]>. // Example Brainf*ck Boilerplate for factorial calculation
         </textarea>
         <button class="button" onclick="checkBrainfuckCode()">Submit Brainfuck Code</button>
         <div id="resultMessage" class="hidden"></div>
@@ -51,6 +51,15 @@
         <p>Now you're one of us, let's go conquer the world!</p>
     </div>
 
+    <footer class="win-footer">
+        <div class="footer-start-button">
+            <img src="logo.png" alt="Start" />
+            <span>Start</span>
+        </div>
+        <div class="footer-text">Made with ❤ by Muhammad Murtaza</div>
+        <div class="footer-clock">🕒 4:20 PM</div>
+    </footer>
+    
     <script>
         // Moving Hand Logic
         const hand = document.getElementById('hand');
@@ -120,6 +129,18 @@
                 alert("Please sign your name first!");
             }
         }
+        function updateClock() {
+        const clockElement = document.querySelector('.footer-clock');
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const timeString = `${hours}:${minutes}:${seconds}`;
+        clockElement.textContent = timeString;
+    }
+
+    setInterval(updateClock, 1000); // Update every second
+    updateClock(); // Initialize clock immediately
     </script>
 </body>
 </html>
