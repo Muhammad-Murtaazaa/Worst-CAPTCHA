@@ -270,5 +270,25 @@ body {
 .footer-clock {
     font-family: monospace;
 }
+@media (max-width: 768px) {
+    .win-footer {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .footer-start-button {
+        display: none;
+    }
+
+    .footer-clock {
+        margin-top: 8px;
+    }
+
+    .footer-text {
+        margin-top: 8px;
+    }
+}
 
 
